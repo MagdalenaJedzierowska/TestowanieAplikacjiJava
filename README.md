@@ -1,1 +1,1 @@
-# Testowanie Aplikacji Java - Magdalena Jędzierowska - 235256
+# Testowanie Aplikacji Java - Magdalena Jędzierowska
