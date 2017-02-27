@@ -10,8 +10,8 @@ public class AppTest
 	@Test
 	public void binPositiveTest(){
 		App bin = new App();
-		int [] A = {1, 8, 9, 88, 26, 35, 49, 63, 22, 14, 57};
-		assertEquals(2, bin.binSearch(9, A, 0, A.length));
+		int [] A = {1, 8, 9, 88, 26, 35, 49, 63, 22, 14, 57, 87};
+		assertEquals(11, bin.binSearch(87, A, 0, A.length));
 	}
 	@Test
 	public void binNegativeTest(){
