@@ -73,7 +73,6 @@ public class ConnectFour {
             StringJoiner stringJoiner = new StringJoiner(delimit, delimit, delimit);
             Stream.of(board[row]).forEachOrdered(stringJoiner::add);
             outputChannel.println(stringJoiner.toString());
-            //outputChannel.println("druk");
         }
     }
     
