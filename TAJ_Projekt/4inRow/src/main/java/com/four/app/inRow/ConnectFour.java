@@ -123,4 +123,12 @@ public class ConnectFour {
             currentPlayer = green;
         else currentPlayer = red;
     }
+    
+    public boolean isFinished() {
+        return getDiscNum() == rows * columns;
+    }
+ 
+    public String getWinner() {
+        return winner;
+    }
 }
