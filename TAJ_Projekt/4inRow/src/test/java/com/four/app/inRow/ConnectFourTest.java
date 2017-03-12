@@ -6,10 +6,10 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.*;
-//import java.io.ByteArrayOutputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.OutputStream;
-//import java.io.PrintStream;
-//import java.util.List;
+import java.io.PrintStream;
+
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.isEmptyString;
 
@@ -17,13 +17,13 @@ public class ConnectFourTest {
 	
     @Rule
     public ExpectedException exception = ExpectedException.none();
-	
 	private ConnectFour tested;
 	private OutputStream output;
 
 	@Before
 	public void setUp() {
-		tested = new ConnectFour();
+		output = new ByteArrayOutputStream();
+		tested = new ConnectFour(new PrintStream(output));
 	}
 
 	@Test
@@ -90,13 +90,18 @@ public class ConnectFourTest {
     }
     
     @Test
+    public void boardNotFullGameNotEndTest() {
+        assertFalse("Game must not end", tested.isFinished());
+    }
+    
+    @Test
     public void boardFullGameEndsTest() {
         for (int row = 0; row < 6; row++){
             for (int column = 0; column < 7; column++){
                 tested.putDisc(column);
             }
         }
-        assertTrue("Game must end", tested.isFinished());
+        assertTrue("Game ends with draw", tested.isFinished());
     }
     
     @Test

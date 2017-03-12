@@ -26,7 +26,8 @@ public class ConnectFour {
 	
 	private PrintStream outputChannel;
 
-	public ConnectFour(){
+	public ConnectFour(PrintStream out){
+		outputChannel = out;
 		for(String[] row : board){
 			Arrays.fill(row, empty);
 		}
@@ -37,9 +38,7 @@ public class ConnectFour {
 	}
 	
     private int getDiscInColNum(int column) {
-        return (int) IntStream.range(0, rows)
-                .filter(row -> !empty.equals(board[row][column]))
-                .count();
+        return (int) IntStream.range(0, rows).filter(row -> !empty.equals(board[row][column])).count();
     }
     
     public int putDisc(int column) {
@@ -74,6 +73,7 @@ public class ConnectFour {
             StringJoiner stringJoiner = new StringJoiner(delimit, delimit, delimit);
             Stream.of(board[row]).forEachOrdered(stringJoiner::add);
             outputChannel.println(stringJoiner.toString());
+            //outputChannel.println("druk");
         }
     }
     
