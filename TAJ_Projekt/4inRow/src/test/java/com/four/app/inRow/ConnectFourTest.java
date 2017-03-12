@@ -1,38 +1,39 @@
 package com.four.app.inRow;
 
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
+import org.junit.Before;
+import org.junit.Rule;
+import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
-/**
- * Unit test for simple ConnectFour.
- */
-public class ConnectFourTest 
-    extends TestCase
-{
-    /**
-     * Create the test case
-     *
-     * @param testName name of the test case
-     */
-    public ConnectFourTest( String testName )
-    {
-        super( testName );
-    }
+public class ConnectFourTest {
+	
+    @Rule
+    public ExpectedException exception = ExpectedException.none();
+	
+	private ConnectFour tested;
 
-    /**
-     * @return the suite of tests being tested
-     */
-    public static Test suite()
-    {
-        return new TestSuite( ConnectFourTest.class );
-    }
+	@Before
+	public void setUp() {
+		tested = new ConnectFour();
+	}
 
-    /**
-     * Rigourous Test :-)
-     */
-    public void testApp()
-    {
-        assertTrue( true );
-    }
+	@Test
+	public void boardEmptyTest(){
+		assertThat(tested.getDiscNum(), is(0));
+	}
+
+	@Test
+	public void discOutOfBoardTest(){
+		int column = -1;
+		exception.expect(RuntimeException.class);
+		exception.expectMessage("Invalid column " + column);
+		tested.putDisc(column);
+	}
+
+	@Test
+	public void firstDiscZeroPositionTest(){
+		int column = 1;
+		assertThat(tested.putDisc(column), is(0));
+	}
+
 }
